@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `rumbabar` DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 USE `rumbabar`;
-
+/*Hola carolina esta lina comentada es para saludarte*/
 
 DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
