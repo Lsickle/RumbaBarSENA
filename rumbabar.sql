@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS `rumbabar` DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4
 USE `rumbabar`;
 
 
-DROP TABLE IF EXISTS `clientes`
+DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `ClienteId` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ClienteNombre` varchar(255) NOT NULL,
