@@ -1,22 +1,9 @@
--- --------------------------------------------------------
--- Host:                         localhost
--- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
--- SO del servidor:              Win64
--- HeidiSQL Versión:             9.5.0.5332
--- --------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
--- Volcando estructura de base de datos para rumbabar
+--  estructura de base de datos para rumbabar
 CREATE DATABASE IF NOT EXISTS `rumbabar` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `rumbabar`;
 
--- Volcando estructura para tabla rumbabar.auditoria_clientes
+--  estructura para tabla rumbabar.auditoria_clientes
 CREATE TABLE IF NOT EXISTS `auditoria_clientes` (
   `audi_clientes_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ClienteId` bigint(20) unsigned NOT NULL,
@@ -29,12 +16,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_clientes` (
   PRIMARY KEY (`audi_clientes_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_clientes: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_clientes: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_clientes`;
-/*!40000 ALTER TABLE `auditoria_clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_clientes` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_compra_producto
+--  estructura para tabla rumbabar.auditoria_compra_producto
 CREATE TABLE IF NOT EXISTS `auditoria_compra_producto` (
   `audi_compra_producto_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_nuevo_compraCantidad` smallint(5) unsigned NOT NULL,
@@ -50,12 +35,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_compra_producto` (
   PRIMARY KEY (`audi_compra_producto_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_compra_producto: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_compra_producto: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_compra_producto`;
-/*!40000 ALTER TABLE `auditoria_compra_producto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_compra_producto` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_mesas
+--  estructura para tabla rumbabar.auditoria_mesas
 CREATE TABLE IF NOT EXISTS `auditoria_mesas` (
   `audi_mesas_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_MesaId` bigint(20) unsigned NOT NULL,
@@ -66,12 +49,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_mesas` (
   PRIMARY KEY (`audi_mesas_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_mesas: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_mesas: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_mesas`;
-/*!40000 ALTER TABLE `auditoria_mesas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_mesas` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_permisos
+--  estructura para tabla rumbabar.auditoria_permisos
 CREATE TABLE IF NOT EXISTS `auditoria_permisos` (
   `audi_permisos_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_PermisoId` bigint(20) unsigned NOT NULL,
@@ -82,12 +63,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_permisos` (
   PRIMARY KEY (`audi_permisos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_permisos: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_permisos: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_permisos`;
-/*!40000 ALTER TABLE `auditoria_permisos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_permisos` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_permiso_rol
+--  estructura para tabla rumbabar.auditoria_permiso_rol
 CREATE TABLE IF NOT EXISTS `auditoria_permiso_rol` (
   `audi_permiso_rol_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_nuevo_fk_permiso` bigint(20) unsigned NOT NULL,
@@ -99,12 +78,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_permiso_rol` (
   PRIMARY KEY (`audi_permiso_rol_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_permiso_rol: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_permiso_rol: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_permiso_rol`;
-/*!40000 ALTER TABLE `auditoria_permiso_rol` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_permiso_rol` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_productos
+--  estructura para tabla rumbabar.auditoria_productos
 CREATE TABLE IF NOT EXISTS `auditoria_productos` (
   `audi_productos_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ProductoId` bigint(20) unsigned NOT NULL,
@@ -123,12 +100,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_productos` (
   PRIMARY KEY (`audi_productos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_productos: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_productos: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_productos`;
-/*!40000 ALTER TABLE `auditoria_productos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_productos` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_producto_venta
+--  estructura para tabla rumbabar.auditoria_producto_venta
 CREATE TABLE IF NOT EXISTS `auditoria_producto_venta` (
   `audi_venta_producto_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_nuevo_ventaCantidad` smallint(5) unsigned NOT NULL,
@@ -144,12 +119,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_producto_venta` (
   PRIMARY KEY (`audi_venta_producto_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_producto_venta: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_producto_venta: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_producto_venta`;
-/*!40000 ALTER TABLE `auditoria_producto_venta` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_producto_venta` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_proveedores
+--  estructura para tabla rumbabar.auditoria_proveedores
 CREATE TABLE IF NOT EXISTS `auditoria_proveedores` (
   `audi_proveedores_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ProveedorID` bigint(20) unsigned NOT NULL,
@@ -162,12 +135,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_proveedores` (
   PRIMARY KEY (`audi_proveedores_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_proveedores: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_proveedores: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_proveedores`;
-/*!40000 ALTER TABLE `auditoria_proveedores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_proveedores` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_roles
+--  estructura para tabla rumbabar.auditoria_roles
 CREATE TABLE IF NOT EXISTS `auditoria_roles` (
   `audi_roles_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_RolId` bigint(20) unsigned NOT NULL,
@@ -178,12 +149,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_roles` (
   PRIMARY KEY (`audi_roles_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_roles: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_roles: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_roles`;
-/*!40000 ALTER TABLE `auditoria_roles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_roles` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.auditoria_usuarios
+--  estructura para tabla rumbabar.auditoria_usuarios
 CREATE TABLE IF NOT EXISTS `auditoria_usuarios` (
   `audi_usuarios_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_UsuarioId` bigint(20) unsigned NOT NULL,
@@ -200,12 +169,10 @@ CREATE TABLE IF NOT EXISTS `auditoria_usuarios` (
   PRIMARY KEY (`audi_usuarios_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.auditoria_usuarios: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.auditoria_usuarios: ~0 rows (aproximadamente)
 DELETE FROM `auditoria_usuarios`;
-/*!40000 ALTER TABLE `auditoria_usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auditoria_usuarios` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.clientes
+--  estructura para tabla rumbabar.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
   `ClienteId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -216,9 +183,8 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   PRIMARY KEY (`ClienteId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.clientes: ~100 rows (aproximadamente)
+--  datos para la tabla rumbabar.clientes: ~100 rows (aproximadamente)
 DELETE FROM `clientes`;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
 INSERT INTO `clientes` (`ClienteId`, `ClienteNombre`, `ClienteDocumento`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Victoria Maya', '1062547285', NULL, NULL, NULL),
 	(2, 'Rosa Gallardo', '962738078', NULL, NULL, NULL),
@@ -320,9 +286,8 @@ INSERT INTO `clientes` (`ClienteId`, `ClienteNombre`, `ClienteDocumento`, `creat
 	(98, 'Eva Muro', '972921302', NULL, NULL, NULL),
 	(99, 'Juan José Manzano', '1064235844', NULL, NULL, NULL),
 	(100, 'Alejandra Mejía', '1009779199', NULL, NULL, NULL);
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.compras
+--  estructura para tabla rumbabar.compras
 CREATE TABLE IF NOT EXISTS `compras` (
   `CompraId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `CompraSaldo` double(10,2) NOT NULL,
@@ -336,9 +301,8 @@ CREATE TABLE IF NOT EXISTS `compras` (
   CONSTRAINT `compras_fk_user_foreign` FOREIGN KEY (`fk_user`) REFERENCES `usuarios` (`UsuarioId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.compras: ~50 rows (aproximadamente)
+--  datos para la tabla rumbabar.compras: ~50 rows (aproximadamente)
 DELETE FROM `compras`;
-/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
 INSERT INTO `compras` (`CompraId`, `CompraSaldo`, `CompraTotal`, `fk_user`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 604.00, 5436.00, 1, NULL, NULL, NULL),
 	(2, 1529.00, 13761.00, 3, NULL, NULL, NULL),
@@ -390,9 +354,8 @@ INSERT INTO `compras` (`CompraId`, `CompraSaldo`, `CompraTotal`, `fk_user`, `cre
 	(48, 6512.78, 58615.00, 5, NULL, NULL, NULL),
 	(49, 3583.30, 35833.00, 3, NULL, NULL, NULL),
 	(50, 2580.00, 12900.00, 3, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.compra_producto
+--  estructura para tabla rumbabar.compra_producto
 CREATE TABLE IF NOT EXISTS `compra_producto` (
   `compraCantidad` smallint(5) unsigned NOT NULL,
   `compraSubtotal` double(10,2) NOT NULL,
@@ -407,9 +370,8 @@ CREATE TABLE IF NOT EXISTS `compra_producto` (
   CONSTRAINT `compra_producto_fk_producto_foreign` FOREIGN KEY (`fk_producto`) REFERENCES `productos` (`ProductoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.compra_producto: ~291 rows (aproximadamente)
+--  datos para la tabla rumbabar.compra_producto: ~291 rows (aproximadamente)
 DELETE FROM `compra_producto`;
-/*!40000 ALTER TABLE `compra_producto` DISABLE KEYS */;
 INSERT INTO `compra_producto` (`compraCantidad`, `compraSubtotal`, `fk_producto`, `fk_compra`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(8, 24593.92, 23, 1, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
 	(64, 314291.20, 29, 1, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
@@ -674,9 +636,8 @@ INSERT INTO `compra_producto` (`compraCantidad`, `compraSubtotal`, `fk_producto`
 	(95, 25356.45, 186, 50, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
 	(68, 571883.40, 208, 50, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
 	(31, 207451.07, 258, 50, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL);
-/*!40000 ALTER TABLE `compra_producto` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.failed_jobs
+--  estructura para tabla rumbabar.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -687,12 +648,10 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.failed_jobs: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.failed_jobs: ~0 rows (aproximadamente)
 DELETE FROM `failed_jobs`;
-/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.mesas
+--  estructura para tabla rumbabar.mesas
 CREATE TABLE IF NOT EXISTS `mesas` (
   `MesaId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `MesaPuestos` tinyint(3) unsigned NOT NULL,
@@ -702,9 +661,8 @@ CREATE TABLE IF NOT EXISTS `mesas` (
   PRIMARY KEY (`MesaId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.mesas: ~15 rows (aproximadamente)
+--  datos para la tabla rumbabar.mesas: ~15 rows (aproximadamente)
 DELETE FROM `mesas`;
-/*!40000 ALTER TABLE `mesas` DISABLE KEYS */;
 INSERT INTO `mesas` (`MesaId`, `MesaPuestos`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 2, NULL, NULL, NULL),
 	(2, 8, NULL, NULL, NULL),
@@ -721,9 +679,8 @@ INSERT INTO `mesas` (`MesaId`, `MesaPuestos`, `created_at`, `updated_at`, `delet
 	(13, 2, NULL, NULL, NULL),
 	(14, 2, NULL, NULL, NULL),
 	(15, 4, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `mesas` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.migrations
+--  estructura para tabla rumbabar.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -731,9 +688,8 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.migrations: ~24 rows (aproximadamente)
+--  datos para la tabla rumbabar.migrations: ~24 rows (aproximadamente)
 DELETE FROM `migrations`;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2013_09_25_200225_create_roles_table', 1),
 	(2, '2014_10_12_000000_create_users_table', 1),
@@ -759,9 +715,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(22, '2020_10_05_062412_create_auditoria_compra_producto_table', 1),
 	(23, '2020_10_05_062432_create_auditoria_producto_venta_table', 1),
 	(24, '2020_10_05_062457_create_auditoria_permiso_rol_table', 1);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.password_resets
+--  estructura para tabla rumbabar.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -769,12 +724,10 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.password_resets: ~0 rows (aproximadamente)
+--  datos para la tabla rumbabar.password_resets: ~0 rows (aproximadamente)
 DELETE FROM `password_resets`;
-/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.permisos
+--  estructura para tabla rumbabar.permisos
 CREATE TABLE IF NOT EXISTS `permisos` (
   `PermisoId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -784,9 +737,8 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   PRIMARY KEY (`PermisoId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.permisos: ~50 rows (aproximadamente)
+--  datos para la tabla rumbabar.permisos: ~50 rows (aproximadamente)
 DELETE FROM `permisos`;
-/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
 INSERT INTO `permisos` (`PermisoId`, `PermisoNombre`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Roldelete', NULL, NULL, NULL),
 	(2, 'Clientecreate', NULL, NULL, NULL),
@@ -838,9 +790,8 @@ INSERT INTO `permisos` (`PermisoId`, `PermisoNombre`, `created_at`, `updated_at`
 	(48, 'Clientecreate', NULL, NULL, NULL),
 	(49, 'Rolread', NULL, NULL, NULL),
 	(50, 'Mesaupdate', NULL, NULL, NULL);
-/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.permiso_rol
+--  estructura para tabla rumbabar.permiso_rol
 CREATE TABLE IF NOT EXISTS `permiso_rol` (
   `fk_permiso` bigint(20) unsigned NOT NULL,
   `fk_rol` bigint(20) unsigned NOT NULL,
@@ -853,9 +804,8 @@ CREATE TABLE IF NOT EXISTS `permiso_rol` (
   CONSTRAINT `permiso_rol_fk_rol_foreign` FOREIGN KEY (`fk_rol`) REFERENCES `roles` (`RolId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.permiso_rol: ~40 rows (aproximadamente)
+--  datos para la tabla rumbabar.permiso_rol: ~40 rows (aproximadamente)
 DELETE FROM `permiso_rol`;
-/*!40000 ALTER TABLE `permiso_rol` DISABLE KEYS */;
 INSERT INTO `permiso_rol` (`fk_permiso`, `fk_rol`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(12, 2, NULL, NULL, NULL),
 	(24, 2, NULL, NULL, NULL),
@@ -897,9 +847,8 @@ INSERT INTO `permiso_rol` (`fk_permiso`, `fk_rol`, `created_at`, `updated_at`, `
 	(32, 4, NULL, NULL, NULL),
 	(38, 4, NULL, NULL, NULL),
 	(44, 4, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `permiso_rol` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.productos
+--  estructura para tabla rumbabar.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `ProductoId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `ProductoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -915,9 +864,8 @@ CREATE TABLE IF NOT EXISTS `productos` (
   CONSTRAINT `productos_fk_proveedor_foreign` FOREIGN KEY (`fk_proveedor`) REFERENCES `proveedores` (`ProveedorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.productos: ~300 rows (aproximadamente)
+--  datos para la tabla rumbabar.productos: ~300 rows (aproximadamente)
 DELETE FROM `productos`;
-/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` (`ProductoId`, `ProductoNombre`, `ProductoDescripcion`, `ProductoPrecio`, `ProductoCantidad`, `fk_proveedor`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Vitaminas', 'Libero nihil autem ipsam et libero qui consectetur. Error cumque omnis accusamus aut optio dolor voluptatibus. Ut distinctio eius omnis et ullam. Voluptatibus molestias omnis et laudantium a reprehenderit.', 2667.38, 27, 2, NULL, NULL, NULL),
 	(2, 'Pasta', 'Consequuntur placeat sit magni iusto dicta sint illum enim. Sed dolores beatae excepturi. Expedita adipisci inventore accusamus laboriosam odio autem. Et assumenda sit quia odit.', 3959.43, 178, 44, NULL, NULL, NULL),
@@ -1219,9 +1167,8 @@ INSERT INTO `productos` (`ProductoId`, `ProductoNombre`, `ProductoDescripcion`, 
 	(298, 'Orégano', 'Placeat voluptas doloribus dolorem ut. Occaecati autem nobis dolorem. Voluptatibus rerum voluptate ex eligendi rerum aut. Temporibus iusto molestiae voluptate id enim vel.', 7476.82, 33, 9, NULL, NULL, NULL),
 	(299, 'Productos femeninos', 'Ad dolorem exercitationem corrupti quam iste. Voluptas non aut adipisci fuga. Aut inventore architecto iste ipsam. Pariatur quaerat aut recusandae alias dolor dolor.', 2318.71, 138, 27, NULL, NULL, NULL),
 	(300, 'Otro b.c.', 'Molestias iure ut vel nostrum quia et. Beatae rerum debitis saepe consectetur ipsa velit. Adipisci accusantium alias dolorem quia quos sint nihil placeat. Mollitia vero omnis velit vitae est sint dicta sapiente. Natus alias dolores nemo hic repellendus.', 248.83, 168, 24, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.producto_venta
+--  estructura para tabla rumbabar.producto_venta
 CREATE TABLE IF NOT EXISTS `producto_venta` (
   `ventaCantidad` smallint(5) unsigned NOT NULL,
   `ventaSubtotal` double(10,2) NOT NULL,
@@ -1236,9 +1183,8 @@ CREATE TABLE IF NOT EXISTS `producto_venta` (
   CONSTRAINT `producto_venta_fk_venta_foreign` FOREIGN KEY (`fk_venta`) REFERENCES `ventas` (`VentaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.producto_venta: ~593 rows (aproximadamente)
+--  datos para la tabla rumbabar.producto_venta: ~593 rows (aproximadamente)
 DELETE FROM `producto_venta`;
-/*!40000 ALTER TABLE `producto_venta` DISABLE KEYS */;
 INSERT INTO `producto_venta` (`ventaCantidad`, `ventaSubtotal`, `fk_producto`, `fk_venta`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(7, 49532.91, 45, 1, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
 	(89, 655160.15, 58, 1, '2020-10-05 06:57:37', '2020-10-05 06:57:37', NULL),
@@ -1885,9 +1831,8 @@ INSERT INTO `producto_venta` (`ventaCantidad`, `ventaSubtotal`, `fk_producto`, `
 	(1, 1391.36, 115, 100, '2020-10-05 06:57:38', '2020-10-05 06:57:38', NULL),
 	(20, 139944.20, 243, 100, '2020-10-05 06:57:38', '2020-10-05 06:57:38', NULL),
 	(55, 433565.00, 247, 100, '2020-10-05 06:57:38', '2020-10-05 06:57:38', NULL);
-/*!40000 ALTER TABLE `producto_venta` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.proveedores
+--  estructura para tabla rumbabar.proveedores
 CREATE TABLE IF NOT EXISTS `proveedores` (
   `ProveedorId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1898,9 +1843,8 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   PRIMARY KEY (`ProveedorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.proveedores: ~50 rows (aproximadamente)
+--  datos para la tabla rumbabar.proveedores: ~50 rows (aproximadamente)
 DELETE FROM `proveedores`;
-/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
 INSERT INTO `proveedores` (`ProveedorId`, `ProveedorNombre`, `ProveedorNit`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Asociación Meraz-Nieves', '756.448.427-1', NULL, NULL, NULL),
 	(2, 'Alanis de Olvera S. de H.', '381.218.970-9', NULL, NULL, NULL),
@@ -1952,9 +1896,8 @@ INSERT INTO `proveedores` (`ProveedorId`, `ProveedorNombre`, `ProveedorNit`, `cr
 	(48, 'Asociación Lira e Hijo', '065.205.490-0', NULL, NULL, NULL),
 	(49, 'Montaño-Rodrigo', '616.764.506-8', NULL, NULL, NULL),
 	(50, 'Jimínez de Betancourt SRL', '176.298.740-0', NULL, NULL, NULL);
-/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.roles
+--  estructura para tabla rumbabar.roles
 CREATE TABLE IF NOT EXISTS `roles` (
   `RolId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1964,17 +1907,15 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`RolId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.roles: ~4 rows (aproximadamente)
+--  datos para la tabla rumbabar.roles: ~4 rows (aproximadamente)
 DELETE FROM `roles`;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` (`RolId`, `RolNombre`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Programador', NULL, NULL, NULL),
 	(2, 'Administrador', NULL, NULL, NULL),
 	(3, 'Usuario', NULL, NULL, NULL),
 	(4, 'Suplente', NULL, NULL, NULL);
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.usuarios
+--  estructura para tabla rumbabar.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `UsuarioId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `UsuarioName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1992,18 +1933,16 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   CONSTRAINT `usuarios_fk_rol_foreign` FOREIGN KEY (`fk_rol`) REFERENCES `roles` (`RolId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.usuarios: ~5 rows (aproximadamente)
+--  datos para la tabla rumbabar.usuarios: ~5 rows (aproximadamente)
 DELETE FROM `usuarios`;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`UsuarioId`, `UsuarioName`, `UsuarioEmail`, `email_verified_at`, `UsuarioPassword`, `fk_rol`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'alcantar.claudia', 'alcantar.claudia@yahoo.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 3, NULL, NULL, NULL, NULL),
 	(2, 'francisco90', 'francisco90@yahoo.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 4, NULL, NULL, NULL, NULL),
 	(3, 'elsa32', 'elsa32@latinmail.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 3, NULL, NULL, NULL, NULL),
 	(4, 'inmaculada.orosco', 'inmaculada.orosco@latinmail.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 4, NULL, NULL, NULL, NULL),
 	(5, 'leo.jiminez', 'leo.jiminez@gmail.com', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 2, NULL, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
--- Volcando estructura para tabla rumbabar.ventas
+--  estructura para tabla rumbabar.ventas
 CREATE TABLE IF NOT EXISTS `ventas` (
   `VentaId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `VentaSaldo` double(10,2) NOT NULL,
@@ -2023,9 +1962,8 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   CONSTRAINT `ventas_fk_user_foreign` FOREIGN KEY (`fk_user`) REFERENCES `usuarios` (`UsuarioId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla rumbabar.ventas: ~100 rows (aproximadamente)
+--  datos para la tabla rumbabar.ventas: ~100 rows (aproximadamente)
 DELETE FROM `ventas`;
-/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
 INSERT INTO `ventas` (`VentaId`, `VentaSaldo`, `VentaTotal`, `fk_user`, `fk_mesa`, `fk_cliente`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 12811.17, 76867.00, 5, 11, 27, NULL, NULL, NULL),
 	(2, 1403.67, 12633.00, 2, 5, 61, NULL, NULL, NULL),
@@ -2127,8 +2065,4 @@ INSERT INTO `ventas` (`VentaId`, `VentaSaldo`, `VentaTotal`, `fk_user`, `fk_mesa
 	(98, 5668.38, 45347.00, 1, 1, 84, NULL, NULL, NULL),
 	(99, 8792.60, 43963.00, 4, 14, 83, NULL, NULL, NULL),
 	(100, 2933.80, 29338.00, 5, 1, 50, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
