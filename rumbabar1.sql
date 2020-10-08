@@ -7,6 +7,9 @@
 
 
 --  estructura de base de datos para rumbabar
+
+DROP DATABASE IF EXISTS `rumbabar`;
+
 CREATE DATABASE IF NOT EXISTS `rumbabar` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `rumbabar`;
 
@@ -18,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_clientes` (
   `audi_nuevo_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_clientes_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_clientes_id`)
@@ -37,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_compra_producto` (
   `audi_anterior_compraSubtotal` double(10,2) NULL,
   `audi_anterior_fk_producto` bigint(20) unsigned NULL,
   `audi_anterior_fk_compra` bigint(20) unsigned NULL,
+  `audi_compra_producto_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_compra_producto_id`)
@@ -51,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_mesas` (
   `audi_MesaId` bigint(20) unsigned NOT NULL,
   `audi_nuevo_MesaPuestos` tinyint(3) unsigned NULL,
   `audi_anterior_MesaPuestos` tinyint(3) unsigned NULL,
+  `audi_mesas_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_mesas_id`)
@@ -65,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_permisos` (
   `audi_PermisoId` bigint(20) unsigned NOT NULL,
   `audi_nuevo_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_permisos_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_permisos_id`)
@@ -80,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_permiso_rol` (
   `audi_nuevo_fk_rol` bigint(20) unsigned NULL,
   `audi_anterior_fk_permiso` bigint(20) unsigned NULL,
   `audi_anterior_fk_rol` bigint(20) unsigned NULL,
+  `audi_permiso_rol_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_permiso_rol_id`)
@@ -102,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_productos` (
   `audi_anterior_ProductoPrecio` double(10,2) NULL,
   `audi_anterior_ProductoCantidad` mediumint(8) unsigned NULL,
   `audi_anterior_fk_proveedor` bigint(20) unsigned NULL,
+  `audi_productos_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_productos_id`)
@@ -121,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_producto_venta` (
   `audi_anterior_ventaSubtotal` double(10,2) NULL,
   `audi_anterior_fk_producto` bigint(20) unsigned NULL,
   `audi_anterior_fk_venta` bigint(20) unsigned NULL,
+  `audi_producto_venta_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_venta_producto_id`)
@@ -137,6 +147,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_proveedores` (
   `audi_nuevo_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_proveedores_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_proveedores_id`)
@@ -151,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_roles` (
   `audi_RolId` bigint(20) unsigned NOT NULL,
   `audi_nuevo_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_roles_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_roles_id`)
@@ -171,6 +183,7 @@ CREATE TABLE IF NOT EXISTS `auditoria_usuarios` (
   `audi_anterior_UsuarioEmail` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_UsuarioPassword` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `audi_anterior_fk_rol` bigint(20) unsigned NULL,
+  `audi_usuarios_operacion` varchar(20) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_usuarios_id`)
@@ -2210,12 +2223,14 @@ CREATE TRIGGER auditoria_clientes_create
 			`auditoria_clientes`.`audi_ClienteId`,
 			`auditoria_clientes`.`audi_nuevo_ClienteNombre`,
 			`auditoria_clientes`.`audi_nuevo_ClienteDocumento`,
-			`auditoria_clientes`.`created_at`
+			`auditoria_clientes`.`created_at`,
+			`auditoria_clientes`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.ClienteId,
 				NEW.ClienteNombre,
 				NEW.ClienteDocumento,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2230,14 +2245,16 @@ CREATE TRIGGER auditoria_clientes_update
 			`auditoria_clientes`.`audi_nuevo_ClienteDocumento`,
 			`auditoria_clientes`.`audi_anterior_ClienteNombre`,
 			`auditoria_clientes`.`audi_anterior_ClienteDocumento`,
-			`auditoria_clientes`.`updated_at`
+			`auditoria_clientes`.`updated_at`,
+			`auditoria_clientes`.`audi_clientes_operacion`
 		) VALUES (
 				OLD.ClienteId,
 				NEW.ClienteNombre,
 				NEW.ClienteDocumento,
 				OLD.ClienteNombre,
 				OLD.ClienteDocumento,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2250,12 +2267,14 @@ CREATE TRIGGER auditoria_clientes_delete
 			`auditoria_clientes`.`audi_ClienteId`,
 			`auditoria_clientes`.`audi_anterior_ClienteNombre`,
 			`auditoria_clientes`.`audi_anterior_ClienteDocumento`,
-			`auditoria_clientes`.`updated_at`
+			`auditoria_clientes`.`updated_at`,
+			`auditoria_clientes`.`audi_clientes_operacion`
 		) VALUES (
 				OLD.ClienteId,
 				OLD.ClienteNombre,
 				OLD.ClienteDocumento,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2269,13 +2288,15 @@ CREATE TRIGGER auditoria_compra_producto_create
 			`auditoria_compra_producto`.`audi_nuevo_compraSubtotal`,
 			`auditoria_compra_producto`.`audi_nuevo_fk_producto`,
 			`auditoria_compra_producto`.`audi_nuevo_fk_compra`,
-			`auditoria_compra_producto`.`created_at`
+			`auditoria_compra_producto`.`created_at`,
+			`auditoria_compra_producto`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.compraCantidad,
 				NEW.compraSubtotal,
 				NEW.fk_producto,
 				NEW.fk_compra,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2293,7 +2314,8 @@ CREATE TRIGGER auditoria_compra_producto_update
 			`auditoria_compra_producto`.`audi_anterior_compraSubtotal`,
 			`auditoria_compra_producto`.`audi_anterior_fk_producto`,
 			`auditoria_compra_producto`.`audi_anterior_fk_compra`,
-			`auditoria_compra_producto`.`updated_at`
+			`auditoria_compra_producto`.`updated_at`,
+			`auditoria_compra_producto`.`audi_compra_producto_operacion`
 		) VALUES (
 				NEW.compraCantidad,
 				NEW.compraSubtotal,
@@ -2303,7 +2325,8 @@ CREATE TRIGGER auditoria_compra_producto_update
 				OLD.compraSubtotal,
 				OLD.fk_producto,
 				OLD.fk_compra,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2317,13 +2340,15 @@ CREATE TRIGGER auditoria_compra_producto_delete
 			`auditoria_compra_producto`.`audi_anterior_compraSubtotal`,
 			`auditoria_compra_producto`.`audi_anterior_fk_producto`,
 			`auditoria_compra_producto`.`audi_anterior_fk_compra`,
-			`auditoria_compra_producto`.`updated_at`
+			`auditoria_compra_producto`.`updated_at`,
+			`auditoria_compra_producto`.`audi_compra_producto_operacion`
 		) VALUES (
 				OLD.compraCantidad,
 				OLD.compraSubtotal,
 				OLD.fk_producto,
 				OLD.fk_compra,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2335,11 +2360,13 @@ CREATE TRIGGER auditoria_mesas_create
 		INSERT INTO `rumbabar`.`auditoria_mesas` (
 			`auditoria_mesas`.`audi_MesaId`,
 			`auditoria_mesas`.`audi_nuevo_MesaPuestos`,
-			`auditoria_mesas`.`created_at`
+			`auditoria_mesas`.`created_at`,
+			`auditoria_mesas`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.MesaId,
 				NEW.MesaPuestos,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2352,12 +2379,14 @@ CREATE TRIGGER auditoria_mesas_update
 			`auditoria_mesas`.`audi_MesaId`,
 			`auditoria_mesas`.`audi_nuevo_MesaPuestos`,
 			`auditoria_mesas`.`audi_anterior_MesaPuestos`,
-			`auditoria_mesas`.`updated_at`
+			`auditoria_mesas`.`updated_at`,
+			`auditoria_mesas`.`audi_mesas_operacion`
 		) VALUES (
 				OLD.MesaId,
 				NEW.MesaPuestos,
 				OLD.MesaPuestos,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2369,11 +2398,13 @@ CREATE TRIGGER auditoria_mesas_delete
 		INSERT INTO `rumbabar`.`auditoria_mesas` (
 			`auditoria_mesas`.`audi_MesaId`,
 			`auditoria_mesas`.`audi_anterior_MesaPuestos`,
-			`auditoria_mesas`.`updated_at`
+			`auditoria_mesas`.`updated_at`,
+			`auditoria_mesas`.`audi_mesas_operacion`
 		) VALUES (
 				OLD.MesaId,
 				OLD.MesaPuestos,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2385,11 +2416,13 @@ CREATE TRIGGER auditoria_permisos_create
 		INSERT INTO `rumbabar`.`auditoria_permisos` (
 			`auditoria_permisos`.`audi_PermisoId`,
 			`auditoria_permisos`.`audi_nuevo_PermisoNombre`,
-			`auditoria_permisos`.`created_at`
+			`auditoria_permisos`.`created_at`,
+			`auditoria_permisos`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.PermisoId,
 				NEW.PermisoNombre,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2402,12 +2435,14 @@ CREATE TRIGGER auditoria_permisos_update
 			`auditoria_permisos`.`audi_PermisoId`,
 			`auditoria_permisos`.`audi_nuevo_PermisoNombre`,
 			`auditoria_permisos`.`audi_anterior_PermisoNombre`,
-			`auditoria_permisos`.`updated_at`
+			`auditoria_permisos`.`updated_at`,
+			`auditoria_permisos`.`audi_permisos_operacion`
 		) VALUES (
 				OLD.PermisoId,
 				NEW.PermisoNombre,
 				OLD.PermisoNombre,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2419,11 +2454,13 @@ CREATE TRIGGER auditoria_permisos_delete
 		INSERT INTO `rumbabar`.`auditoria_permisos` (
 			`auditoria_permisos`.`audi_PermisoId`,
 			`auditoria_permisos`.`audi_anterior_PermisoNombre`,
-			`auditoria_permisos`.`updated_at`
+			`auditoria_permisos`.`updated_at`,
+			`auditoria_permisos`.`audi_permisos_operacion`
 		) VALUES (
 				OLD.PermisoId,
 				OLD.PermisoNombre,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2435,11 +2472,13 @@ CREATE TRIGGER auditoria_permiso_rol_create
 		INSERT INTO `rumbabar`.`auditoria_permiso_rol` (
 			`auditoria_permiso_rol`.`audi_nuevo_fk_permiso`,
 			`auditoria_permiso_rol`.`audi_nuevo_fk_rol`,
-			`auditoria_permiso_rol`.`created_at`
+			`auditoria_permiso_rol`.`created_at`,
+			`auditoria_permiso_rol`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.fk_permiso,
 				NEW.fk_rol,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2453,13 +2492,15 @@ CREATE TRIGGER auditoria_permiso_rol_update
 			`auditoria_permiso_rol`.`audi_nuevo_fk_rol`,
 			`auditoria_permiso_rol`.`audi_anterior_fk_permiso`,
 			`auditoria_permiso_rol`.`audi_anterior_fk_rol`,
-			`auditoria_permiso_rol`.`updated_at`
+			`auditoria_permiso_rol`.`updated_at`,
+			`auditoria_permiso_rol`.`audi_permiso_rol_operacion`
 		) VALUES (
 				NEW.fk_permiso,
 				NEW.fk_rol,
 				OLD.fk_permiso,
 				OLD.fk_rol,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2471,11 +2512,13 @@ CREATE TRIGGER auditoria_permiso_rol_delete
 		INSERT INTO `rumbabar`.`auditoria_permiso_rol` (
 			`auditoria_permiso_rol`.`audi_anterior_fk_permiso`,
 			`auditoria_permiso_rol`.`audi_anterior_fk_rol`,
-			`auditoria_permiso_rol`.`updated_at`
+			`auditoria_permiso_rol`.`updated_at`,
+			`auditoria_permiso_rol`.`audi_permiso_rol_operacion`
 		) VALUES (
 				OLD.fk_permiso,
 				OLD.fk_rol,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2490,14 +2533,16 @@ CREATE TRIGGER auditoria_productos_create
 			`auditoria_productos`.`audi_nuevo_ProductoPrecio`,
 			`auditoria_productos`.`audi_nuevo_ProductoCantidad`,
 			`auditoria_productos`.`audi_nuevo_fk_proveedor`,
-			`auditoria_productos`.`created_at`
+			`auditoria_productos`.`created_at`,
+			`auditoria_productos`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.ProductoNombre,
 				NEW.ProductoDescripcion,
 				NEW.ProductoPrecio,
 				NEW.ProductoCantidad,
 				NEW.fk_proveedor,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2517,7 +2562,8 @@ CREATE TRIGGER auditoria_productos_update
 			`auditoria_productos`.`audi_anterior_ProductoPrecio`,
 			`auditoria_productos`.`audi_anterior_ProductoCantidad`,
 			`auditoria_productos`.`audi_anterior_fk_proveedor`,
-			`auditoria_productos`.`updated_at`
+			`auditoria_productos`.`updated_at`,
+			`auditoria_productos`.`audi_productos_operacion`
 		) VALUES (
 				NEW.ProductoNombre,
 				NEW.ProductoDescripcion,
@@ -2529,7 +2575,8 @@ CREATE TRIGGER auditoria_productos_update
 				OLD.ProductoPrecio,
 				OLD.ProductoCantidad,
 				OLD.fk_proveedor,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2544,14 +2591,16 @@ CREATE TRIGGER auditoria_productos_delete
 			`auditoria_productos`.`audi_anterior_ProductoPrecio`,
 			`auditoria_productos`.`audi_anterior_ProductoCantidad`,
 			`auditoria_productos`.`audi_anterior_fk_proveedor`,
-			`auditoria_productos`.`updated_at`
+			`auditoria_productos`.`updated_at`,
+			`auditoria_productos`.`audi_productos_operacion`
 		) VALUES (
 				OLD.ProductoNombre,
 				OLD.ProductoDescripcion,
 				OLD.ProductoPrecio,
 				OLD.ProductoCantidad,
 				OLD.fk_proveedor,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2565,13 +2614,15 @@ CREATE TRIGGER auditoria_producto_venta_create
 			`auditoria_producto_venta`.`audi_nuevo_ventaSubtotal`,
 			`auditoria_producto_venta`.`audi_nuevo_fk_producto`,
 			`auditoria_producto_venta`.`audi_nuevo_fk_venta`,
-			`auditoria_producto_venta`.`created_at`
+			`auditoria_producto_venta`.`created_at`,
+			`auditoria_producto_venta`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.ventaCantidad,
 				NEW.ventaSubtotal,
 				NEW.fk_producto,
 				NEW.fk_venta,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2589,7 +2640,8 @@ CREATE TRIGGER auditoria_producto_venta_update
 			`auditoria_producto_venta`.`audi_anterior_ventaSubtotal`,
 			`auditoria_producto_venta`.`audi_anterior_fk_producto`,
 			`auditoria_producto_venta`.`audi_anterior_fk_venta`,
-			`auditoria_producto_venta`.`updated_at`
+			`auditoria_producto_venta`.`updated_at`,
+			`auditoria_producto_venta`.`audi_producto_venta_operacion`
 		) VALUES (
 				NEW.ventaCantidad,
 				NEW.ventaSubtotal,
@@ -2599,7 +2651,8 @@ CREATE TRIGGER auditoria_producto_venta_update
 				OLD.ventaSubtotal,
 				OLD.fk_producto,
 				OLD.fk_venta,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2613,13 +2666,15 @@ CREATE TRIGGER auditoria_producto_venta_delete
 			`auditoria_producto_venta`.`audi_anterior_ventaSubtotal`,
 			`auditoria_producto_venta`.`audi_anterior_fk_producto`,
 			`auditoria_producto_venta`.`audi_anterior_fk_venta`,
-			`auditoria_producto_venta`.`updated_at`
+			`auditoria_producto_venta`.`updated_at`,
+			`auditoria_producto_venta`.`audi_producto_venta_operacion`
 		) VALUES (
 				OLD.ventaCantidad,
 				OLD.ventaSubtotal,
 				OLD.fk_producto,
 				OLD.fk_venta,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2632,12 +2687,14 @@ CREATE TRIGGER auditoria_proveedores_create
 			`auditoria_proveedores`.`audi_ProveedorID`,
 			`auditoria_proveedores`.`audi_nuevo_ProveedorNombre`,
 			`auditoria_proveedores`.`audi_nuevo_ProveedorNit`,
-			`auditoria_proveedores`.`created_at`
+			`auditoria_proveedores`.`created_at`,
+			`auditoria_proveedores`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.ProveedorId,
 				NEW.ProveedorNombre,
 				NEW.ProveedorNit,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2652,14 +2709,16 @@ CREATE TRIGGER auditoria_proveedores_update
 			`auditoria_proveedores`.`audi_nuevo_ProveedorNit`,
 			`auditoria_proveedores`.`audi_anterior_ProveedorNombre`,
 			`auditoria_proveedores`.`audi_anterior_ProveedorNit`,
-			`auditoria_proveedores`.`updated_at`
+			`auditoria_proveedores`.`updated_at`,
+			`auditoria_proveedores`.`audi_proveedores_operacion`
 		) VALUES (
 				OLD.ProveedorId,
 				NEW.ProveedorNombre,
 				NEW.ProveedorNit,
 				OLD.ProveedorNombre,
 				OLD.ProveedorNit,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2672,12 +2731,14 @@ CREATE TRIGGER auditoria_proveedores_delete
 			`auditoria_proveedores`.`audi_ProveedorID`,
 			`auditoria_proveedores`.`audi_anterior_ProveedorNombre`,
 			`auditoria_proveedores`.`audi_anterior_ProveedorNit`,
-			`auditoria_proveedores`.`updated_at`
+			`auditoria_proveedores`.`updated_at`,
+			`auditoria_proveedores`.`audi_proveedores_operacion`
 		) VALUES (
 				OLD.ProveedorId,
 				OLD.ProveedorNombre,
 				OLD.ProveedorNit,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2689,11 +2750,13 @@ CREATE TRIGGER auditoria_roles_create
 		INSERT INTO `rumbabar`.`auditoria_roles` (
 			`auditoria_roles`.`audi_RolId`,
 			`auditoria_roles`.`audi_nuevo_RolNombre`,
-			`auditoria_roles`.`created_at`
+			`auditoria_roles`.`created_at`,
+			`auditoria_roles`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.RolId,
 				NEW.RolNombre,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2706,12 +2769,14 @@ CREATE TRIGGER auditoria_roles_update
 			`auditoria_roles`.`audi_RolId`,
 			`auditoria_roles`.`audi_nuevo_RolNombre`,
 			`auditoria_roles`.`audi_anterior_RolNombre`,
-			`auditoria_roles`.`updated_at`
+			`auditoria_roles`.`updated_at`,
+			`auditoria_roles`.`audi_roles_operacion`
 		) VALUES (
 				OLD.RolId,
 				NEW.RolNombre,
 				OLD.RolNombre,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2723,11 +2788,13 @@ CREATE TRIGGER auditoria_roles_delete
 		INSERT INTO `rumbabar`.`auditoria_roles` (
 			`auditoria_roles`.`audi_RolId`,
 			`auditoria_roles`.`audi_anterior_RolNombre`,
-			`auditoria_roles`.`updated_at`
+			`auditoria_roles`.`updated_at`,
+			`auditoria_roles`.`audi_roles_operacion`
 		) VALUES (
 				OLD.RolId,
 				OLD.RolNombre,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
@@ -2742,14 +2809,16 @@ CREATE TRIGGER auditoria_usuarios_create
 			`auditoria_usuarios`.`audi_nuevo_UsuarioEmail`,
 			`auditoria_usuarios`.`audi_nuevo_UsuarioPassword`,
 			`auditoria_usuarios`.`audi_nuevo_fk_rol`,
-			`auditoria_usuarios`.`created_at`
+			`auditoria_usuarios`.`created_at`,
+			`auditoria_usuarios`.`audi_usuarios_operacion`
 		) VALUES (
 				NEW.UsuarioId,
 				NEW.UsuarioName,
 				NEW.UsuarioEmail,
 				NEW.UsuarioPassword,
 				NEW.fk_rol,
-				NEW.created_at
+				NEW.created_at,
+				"INSERT"
 			);
     END;$$
 
@@ -2768,7 +2837,8 @@ CREATE TRIGGER auditoria_usuarios_update
 			`auditoria_usuarios`.`audi_anterior_UsuarioEmail`,
 			`auditoria_usuarios`.`audi_anterior_UsuarioPassword`,
 			`auditoria_usuarios`.`audi_anterior_fk_rol`,
-			`auditoria_usuarios`.`updated_at`
+			`auditoria_usuarios`.`updated_at`,
+			`auditoria_usuarios`.`audi_usuarios_operacion`
 		) VALUES (
 				OLD.UsuarioId,
 				NEW.UsuarioName,
@@ -2779,7 +2849,8 @@ CREATE TRIGGER auditoria_usuarios_update
 				OLD.UsuarioEmail,
 				OLD.UsuarioPassword,
 				OLD.fk_rol,
-				NEW.updated_at
+				NEW.updated_at,
+				"UPDATE"
 			);
     END;$$
 
@@ -2791,18 +2862,18 @@ CREATE TRIGGER auditoria_usuarios_delete
 		INSERT INTO `rumbabar`.`auditoria_usuarios` (
 			`auditoria_usuarios`.`audi_UsuarioId`,
 			`auditoria_usuarios`.`audi_anterior_RolNombre`,
-			`auditoria_usuarios`.`updated_at`
+			`auditoria_usuarios`.`updated_at`,
+			`auditoria_usuarios`.`audi_usuarios_operacion`
 		) VALUES (
 				OLD.UsuarioId,
 				OLD.UsuarioName,
 				OLD.UsuarioEmail,
 				OLD.UsuarioPassword,
 				OLD.fk_rol,
-				OLD.deleted_at
+				OLD.deleted_at,
+				"DELETE"
 			);
     END;$$
 
 
 DELIMITER ;
-
-INSERT INTO `rumbabar`.`clientes` (`ClienteNombre`, `ClienteDocumento`,`created_at`) VALUES ('Luis De la hoz',	'1127607127', NOW());
