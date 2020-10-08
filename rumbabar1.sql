@@ -14,10 +14,10 @@ USE `rumbabar`;
 CREATE TABLE IF NOT EXISTS `auditoria_clientes` (
   `audi_clientes_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ClienteId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audi_nuevo_ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ClienteNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ClienteDocumento` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_clientes_id`)
@@ -29,14 +29,14 @@ DELETE FROM `auditoria_clientes`;
 --  estructura para tabla rumbabar.auditoria_compra_producto
 CREATE TABLE IF NOT EXISTS `auditoria_compra_producto` (
   `audi_compra_producto_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `audi_nuevo_compraCantidad` smallint(5) unsigned NOT NULL,
-  `audi_nuevo_compraSubtotal` double(10,2) NOT NULL,
-  `audi_nuevo_fk_producto` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_fk_compra` bigint(20) unsigned NOT NULL,
-  `audi_anterior_compraCantidad` smallint(5) unsigned NOT NULL,
-  `audi_anterior_compraSubtotal` double(10,2) NOT NULL,
-  `audi_anterior_fk_producto` bigint(20) unsigned NOT NULL,
-  `audi_anterior_fk_compra` bigint(20) unsigned NOT NULL,
+  `audi_nuevo_compraCantidad` smallint(5) unsigned NULL,
+  `audi_nuevo_compraSubtotal` double(10,2) NULL,
+  `audi_nuevo_fk_producto` bigint(20) unsigned NULL,
+  `audi_nuevo_fk_compra` bigint(20) unsigned NULL,
+  `audi_anterior_compraCantidad` smallint(5) unsigned NULL,
+  `audi_anterior_compraSubtotal` double(10,2) NULL,
+  `audi_anterior_fk_producto` bigint(20) unsigned NULL,
+  `audi_anterior_fk_compra` bigint(20) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_compra_producto_id`)
@@ -49,8 +49,8 @@ DELETE FROM `auditoria_compra_producto`;
 CREATE TABLE IF NOT EXISTS `auditoria_mesas` (
   `audi_mesas_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_MesaId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_MesaPuestos` tinyint(3) unsigned NOT NULL,
-  `audi_anterior_MesaPuestos` tinyint(3) unsigned NOT NULL,
+  `audi_nuevo_MesaPuestos` tinyint(3) unsigned NULL,
+  `audi_anterior_MesaPuestos` tinyint(3) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_mesas_id`)
@@ -63,8 +63,8 @@ DELETE FROM `auditoria_mesas`;
 CREATE TABLE IF NOT EXISTS `auditoria_permisos` (
   `audi_permisos_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_PermisoId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audi_nuevo_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_PermisoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_permisos_id`)
@@ -76,10 +76,10 @@ DELETE FROM `auditoria_permisos`;
 --  estructura para tabla rumbabar.auditoria_permiso_rol
 CREATE TABLE IF NOT EXISTS `auditoria_permiso_rol` (
   `audi_permiso_rol_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `audi_nuevo_fk_permiso` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_fk_rol` bigint(20) unsigned NOT NULL,
-  `audi_anterior_fk_permiso` bigint(20) unsigned NOT NULL,
-  `audi_anterior_fk_rol` bigint(20) unsigned NOT NULL,
+  `audi_nuevo_fk_permiso` bigint(20) unsigned NULL,
+  `audi_nuevo_fk_rol` bigint(20) unsigned NULL,
+  `audi_anterior_fk_permiso` bigint(20) unsigned NULL,
+  `audi_anterior_fk_rol` bigint(20) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_permiso_rol_id`)
@@ -92,16 +92,16 @@ DELETE FROM `auditoria_permiso_rol`;
 CREATE TABLE IF NOT EXISTS `auditoria_productos` (
   `audi_productos_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ProductoId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_ProductoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_ProductoDescripcion` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_ProductoPrecio` double(10,2) NOT NULL,
-  `audi_nuevo_ProductoCantidad` mediumint(8) unsigned NOT NULL,
-  `audi_nuevo_fk_proveedor` bigint(20) unsigned NOT NULL,
-  `audi_anterior_ProductoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ProductoDescripcion` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ProductoPrecio` double(10,2) NOT NULL,
-  `audi_anterior_ProductoCantidad` mediumint(8) unsigned NOT NULL,
-  `audi_anterior_fk_proveedor` bigint(20) unsigned NOT NULL,
+  `audi_nuevo_ProductoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_ProductoDescripcion` longtext COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_ProductoPrecio` double(10,2) NULL,
+  `audi_nuevo_ProductoCantidad` mediumint(8) unsigned NULL,
+  `audi_nuevo_fk_proveedor` bigint(20) unsigned NULL,
+  `audi_anterior_ProductoNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ProductoDescripcion` longtext COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ProductoPrecio` double(10,2) NULL,
+  `audi_anterior_ProductoCantidad` mediumint(8) unsigned NULL,
+  `audi_anterior_fk_proveedor` bigint(20) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_productos_id`)
@@ -113,14 +113,14 @@ DELETE FROM `auditoria_productos`;
 --  estructura para tabla rumbabar.auditoria_producto_venta
 CREATE TABLE IF NOT EXISTS `auditoria_producto_venta` (
   `audi_venta_producto_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `audi_nuevo_ventaCantidad` smallint(5) unsigned NOT NULL,
-  `audi_nuevo_ventaSubtotal` double(10,2) NOT NULL,
-  `audi_nuevo_fk_producto` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_fk_venta` bigint(20) unsigned NOT NULL,
-  `audi_anterior_ventaCantidad` smallint(5) unsigned NOT NULL,
-  `audi_anterior_ventaSubtotal` double(10,2) NOT NULL,
-  `audi_anterior_fk_producto` bigint(20) unsigned NOT NULL,
-  `audi_anterior_fk_venta` bigint(20) unsigned NOT NULL,
+  `audi_nuevo_ventaCantidad` smallint(5) unsigned NULL,
+  `audi_nuevo_ventaSubtotal` double(10,2) NULL,
+  `audi_nuevo_fk_producto` bigint(20) unsigned NULL,
+  `audi_nuevo_fk_venta` bigint(20) unsigned NULL,
+  `audi_anterior_ventaCantidad` smallint(5) unsigned NULL,
+  `audi_anterior_ventaSubtotal` double(10,2) NULL,
+  `audi_anterior_fk_producto` bigint(20) unsigned NULL,
+  `audi_anterior_fk_venta` bigint(20) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_venta_producto_id`)
@@ -133,10 +133,10 @@ DELETE FROM `auditoria_producto_venta`;
 CREATE TABLE IF NOT EXISTS `auditoria_proveedores` (
   `audi_proveedores_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_ProveedorID` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audi_nuevo_ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ProveedorNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_ProveedorNit` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_proveedores_id`)
@@ -149,8 +149,8 @@ DELETE FROM `auditoria_proveedores`;
 CREATE TABLE IF NOT EXISTS `auditoria_roles` (
   `audi_roles_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_RolId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `audi_nuevo_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_RolNombre` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_roles_id`)
@@ -163,14 +163,14 @@ DELETE FROM `auditoria_roles`;
 CREATE TABLE IF NOT EXISTS `auditoria_usuarios` (
   `audi_usuarios_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `audi_UsuarioId` bigint(20) unsigned NOT NULL,
-  `audi_nuevo_UsuarioName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_UsuarioEmail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_UsuarioPassword` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_nuevo_fk_rol` bigint(20) unsigned NOT NULL,
-  `audi_anterior_UsuarioName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_UsuarioEmail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_UsuarioPassword` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `audi_anterior_fk_rol` bigint(20) unsigned NOT NULL,
+  `audi_nuevo_UsuarioName` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_UsuarioEmail` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_UsuarioPassword` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_nuevo_fk_rol` bigint(20) unsigned NULL,
+  `audi_anterior_UsuarioName` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_UsuarioEmail` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_UsuarioPassword` varchar(255) COLLATE utf8mb4_unicode_ci NULL,
+  `audi_anterior_fk_rol` bigint(20) unsigned NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`audi_usuarios_id`)
@@ -2032,3 +2032,777 @@ INSERT INTO `ventas` (`VentaId`, `VentaSaldo`, `VentaTotal`, `fk_user`, `fk_mesa
 	(99, 1029.00, 2058.00, 5, 1, 74, NULL, NULL, NULL),
 	(100, 51162.00, 51162.00, 2, 7, 57, NULL, NULL, NULL);
 
+
+DROP PROCEDURE IF EXISTS SelectAllClientes;
+CREATE PROCEDURE SelectAllClientes()
+	SELECT * FROM clientes;
+
+DROP PROCEDURE IF EXISTS SelectAllCompras;
+CREATE PROCEDURE SelectAllCompras()
+	SELECT * FROM compras;
+
+DROP PROCEDURE IF EXISTS SelectAllProductos;
+CREATE PROCEDURE SelectAllProductos()
+	SELECT * FROM productos;
+
+DROP PROCEDURE IF EXISTS SelectAllProveedores;
+CREATE PROCEDURE SelectAllProveedores()
+	SELECT * FROM proveedores;
+
+DROP PROCEDURE IF EXISTS SelectAllRoles;
+CREATE PROCEDURE SelectAllRoles()
+	SELECT * FROM roles;
+
+DROP PROCEDURE IF EXISTS SelectAllMesas;
+CREATE PROCEDURE SelectAllMesas()
+	SELECT * FROM mesas;
+
+DROP PROCEDURE IF EXISTS SelectAllPermisos;
+CREATE PROCEDURE SelectAllPermisos()
+	SELECT * FROM permisos;
+
+DROP PROCEDURE IF EXISTS SelectAllUsuarios;
+CREATE PROCEDURE SelectAllUsuarios()
+	SELECT * FROM usuarios;
+
+DROP PROCEDURE IF EXISTS SelectAllVentas;
+CREATE PROCEDURE SelectAllVentas()
+	SELECT * FROM ventas;
+
+DROP PROCEDURE IF EXISTS SelectClienteEspecifico;
+CREATE PROCEDURE SelectClienteEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`clientes` WHERE `ClienteId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectCompraEspecifico;
+CREATE PROCEDURE SelectCompraEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`compras` WHERE `CompraId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectMesaEspecifico;
+CREATE PROCEDURE SelectMesaEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`mesas` WHERE `MesaId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectPermisoEspecifico;
+CREATE PROCEDURE SelectPermisoEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`permisos` WHERE `PermisoId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectProductoEspecifico;
+CREATE PROCEDURE SelectProductoEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`productos` WHERE `ProductoId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectProveedorEspecifico;
+CREATE PROCEDURE SelectProveedorEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`proveedores` WHERE `ProveedorId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectRolEspecifico;
+CREATE PROCEDURE SelectRolEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`roles` WHERE `RolId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectUsuarioEspecifico;
+CREATE PROCEDURE SelectUsuarioEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`usuarios` WHERE `UsuarioId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectVentaEspecifico;
+CREATE PROCEDURE SelectVentaEspecifico(id INT)
+	SELECT * FROM `rumbabar`.`ventas` WHERE `VentaId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarClienteEspecifico;
+CREATE PROCEDURE BorrarClienteEspecifico(id INT)
+	DELETE FROM `rumbabar`.`clientes` WHERE `ClienteId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarCompraEspecifico;
+CREATE PROCEDURE BorrarCompraEspecifico(id INT)
+	DELETE FROM `rumbabar`.`compras` WHERE `CompraId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarMesaEspecifico;
+CREATE PROCEDURE BorrarMesaEspecifico(id INT)
+	DELETE FROM `rumbabar`.`mesas` WHERE `MesaId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarPermisoEspecifico;
+CREATE PROCEDURE BorrarPermisoEspecifico(id INT)
+	DELETE FROM `rumbabar`.`permisos` WHERE `PermisoId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarProductoEspecifico;
+CREATE PROCEDURE BorrarProductoEspecifico(id INT)
+	DELETE FROM `rumbabar`.`productos` WHERE `ProductoId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarProveedorEspecifico;
+CREATE PROCEDURE BorrarProveedorEspecifico(id INT)
+	DELETE FROM `rumbabar`.`proveedores` WHERE `ProveedorId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarRolEspecifico;
+CREATE PROCEDURE BorrarRolEspecifico(id INT)
+	DELETE FROM `rumbabar`.`roles` WHERE `RolId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarUsuarioEspecifico;
+CREATE PROCEDURE BorrarUsuarioEspecifico(id INT)
+	DELETE FROM `rumbabar`.`usuarios` WHERE `UsuarioId` = id;
+
+
+DROP PROCEDURE IF EXISTS BorrarVentaEspecifico;
+CREATE PROCEDURE BorrarVentaEspecifico(id INT)
+	DELETE FROM `rumbabar`.`ventas` WHERE `VentaId` = id;
+
+
+DROP PROCEDURE IF EXISTS SelectAllUsuariosConRoles;
+CREATE PROCEDURE SelectAllUsuariosConRoles()
+SELECT * FROM `rumbabar`.`usuarios` INNER JOIN `rumbabar`.`roles` ON `usuarios`.`fk_rol` = `roles`.`RolId`;
+
+DROP PROCEDURE IF EXISTS SelectAllRolesConPivot;
+CREATE PROCEDURE SelectAllRolesConPivot()
+SELECT * FROM `rumbabar`.`roles`, `rumbabar`.`permiso_rol` WHERE `roles`.`RolId`=`permiso_rol`.`fk_rol`;
+
+DROP PROCEDURE IF EXISTS SelectAllRolesConPermisos;
+CREATE PROCEDURE SelectAllRolesConPermisos()
+SELECT * FROM `rumbabar`.`roles`, `rumbabar`.`permiso_rol`, `rumbabar`.`permisos` WHERE `roles`.`RolId`=`permiso_rol`.`fk_rol` AND `permisos`.`PermisoId`=`permiso_rol`.`fk_permiso`;
+
+DROP PROCEDURE IF EXISTS SelectAllRolesConPermisos2;
+CREATE PROCEDURE SelectAllRolesConPermisos2()
+SELECT * FROM ((`rumbabar`.`roles` INNER JOIN `rumbabar`.`permiso_rol` ON `roles`.`RolId`=`permiso_rol`.`fk_rol`) INNER JOIN `rumbabar`.`permisos` ON `permisos`.`PermisoId`=`permiso_rol`.`fk_permiso`);
+
+DROP PROCEDURE IF EXISTS SelectAllUsuariosConPermisos;
+CREATE PROCEDURE SelectAllUsuariosConPermisos()
+SELECT `usuarios`.`UsuarioName`, `permisos`.`PermisoNombre` FROM (`rumbabar`.`usuarios` INNER JOIN `rumbabar`.`permiso_rol` ON `usuarios`.`fk_rol` = `permiso_rol`.`fk_rol`) INNER JOIN `rumbabar`.`permisos` ON `permisos`.`PermisoId` = `permiso_rol`.`fk_permiso`;
+
+DROP PROCEDURE IF EXISTS SelectProductoConProveedor;
+CREATE PROCEDURE SelectProductoConProveedor(nombre varchar(255))
+SELECT * FROM (SELECT * FROM `rumbabar`.`productos` WHERE `productos`.`ProductoNombre` LIKE concat('%',nombre,'%')) AS `producto` INNER JOIN `rumbabar`.`proveedores` ON `producto`.`fk_proveedor` = `proveedores`.`ProveedorId`;
+
+DROP PROCEDURE IF EXISTS BuscarProductoPorNombre;
+CREATE PROCEDURE BuscarProductoPorNombre(nombre varchar(255))
+SELECT * FROM `rumbabar`.`productos` WHERE `productos`.`ProductoNombre` LIKE concat('%',nombre,'%');
+
+DROP PROCEDURE IF EXISTS FiltrarVentasPorRangoFechas;
+CREATE PROCEDURE FiltrarVentasPorRangoFechas(fechaInicio DATE, fechaFin DATE)
+SELECT * FROM `rumbabar`.`ventas` WHERE `ventas`.`updated_at` BETWEEN fechaInicio AND fechaFin;
+
+DROP PROCEDURE IF EXISTS FiltrarVentasPorFecha;
+CREATE PROCEDURE FiltrarVentasPorFecha(fecha DATE)
+SELECT * FROM `rumbabar`.`ventas` WHERE `ventas`.`updated_at` LIKE concat('%',fecha,'%');
+
+DROP PROCEDURE IF EXISTS SelectVentaConProductos;
+CREATE PROCEDURE SelectVentaConProductos(venta INT)
+SELECT `ventas`.`VentaId`, `ventas`.`VentaSaldo`, `ventas`.`VentaTotal`, `ventas`.`fk_user`, `ventas`.`fk_mesa`, `ventas`.`fk_cliente`, `productos`.`ProductoId`, `productos`.`ProductoNombre`, `productos`.`ProductoPrecio`, `productos`.`ProductoCantidad` FROM ((`rumbabar`.`ventas` INNER JOIN `rumbabar`.`producto_venta` ON `ventas`.`VentaId`=`producto_venta`.`fk_venta`) INNER JOIN `rumbabar`.`productos` ON `productos`.`ProductoId`=`producto_venta`.`fk_producto`) WHERE `ventas`.`VentaId` = venta;
+
+DELIMITER $$
+
+DROP TRIGGER IF EXISTS auditoria_clientes_create;$$
+
+CREATE TRIGGER auditoria_clientes_create
+    AFTER INSERT ON `rumbabar`.`clientes` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_clientes` (
+			`auditoria_clientes`.`audi_ClienteId`,
+			`auditoria_clientes`.`audi_nuevo_ClienteNombre`,
+			`auditoria_clientes`.`audi_nuevo_ClienteDocumento`,
+			`auditoria_clientes`.`created_at`
+		) VALUES (
+				NEW.ClienteId,
+				NEW.ClienteNombre,
+				NEW.ClienteDocumento,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_clientes_update;$$
+
+CREATE TRIGGER auditoria_clientes_update
+    AFTER UPDATE ON `rumbabar`.`clientes` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_clientes` (
+			`auditoria_clientes`.`audi_ClienteId`,
+			`auditoria_clientes`.`audi_nuevo_ClienteNombre`,
+			`auditoria_clientes`.`audi_nuevo_ClienteDocumento`,
+			`auditoria_clientes`.`audi_anterior_ClienteNombre`,
+			`auditoria_clientes`.`audi_anterior_ClienteDocumento`,
+			`auditoria_clientes`.`updated_at`
+		) VALUES (
+				OLD.ClienteId,
+				NEW.ClienteNombre,
+				NEW.ClienteDocumento,
+				OLD.ClienteNombre,
+				OLD.ClienteDocumento,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_clientes_delete;$$
+
+CREATE TRIGGER auditoria_clientes_delete
+    AFTER DELETE ON `rumbabar`.`clientes` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_clientes` (
+			`auditoria_clientes`.`audi_ClienteId`,
+			`auditoria_clientes`.`audi_anterior_ClienteNombre`,
+			`auditoria_clientes`.`audi_anterior_ClienteDocumento`,
+			`auditoria_clientes`.`updated_at`
+		) VALUES (
+				OLD.ClienteId,
+				OLD.ClienteNombre,
+				OLD.ClienteDocumento,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_compra_producto_create;$$
+
+CREATE TRIGGER auditoria_compra_producto_create
+    AFTER INSERT ON `rumbabar`.`compra_producto` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_compra_producto` (
+			`auditoria_compra_producto`.`audi_nuevo_compraCantidad`,
+			`auditoria_compra_producto`.`audi_nuevo_compraSubtotal`,
+			`auditoria_compra_producto`.`audi_nuevo_fk_producto`,
+			`auditoria_compra_producto`.`audi_nuevo_fk_compra`,
+			`auditoria_compra_producto`.`created_at`
+		) VALUES (
+				NEW.compraCantidad,
+				NEW.compraSubtotal,
+				NEW.fk_producto,
+				NEW.fk_compra,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_compra_producto_update;$$
+
+CREATE TRIGGER auditoria_compra_producto_update
+    AFTER UPDATE ON `rumbabar`.`compra_producto` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_compra_producto` (
+			`auditoria_compra_producto`.`audi_nuevo_compraCantidad`,
+			`auditoria_compra_producto`.`audi_nuevo_compraSubtotal`,
+			`auditoria_compra_producto`.`audi_nuevo_fk_producto`,
+			`auditoria_compra_producto`.`audi_nuevo_fk_compra`,
+			`auditoria_compra_producto`.`audi_anterior_compraCantidad`,
+			`auditoria_compra_producto`.`audi_anterior_compraSubtotal`,
+			`auditoria_compra_producto`.`audi_anterior_fk_producto`,
+			`auditoria_compra_producto`.`audi_anterior_fk_compra`,
+			`auditoria_compra_producto`.`updated_at`
+		) VALUES (
+				NEW.compraCantidad,
+				NEW.compraSubtotal,
+				NEW.fk_producto,
+				NEW.fk_compra,
+				OLD.compraCantidad,
+				OLD.compraSubtotal,
+				OLD.fk_producto,
+				OLD.fk_compra,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_compra_producto_delete;$$
+
+CREATE TRIGGER auditoria_compra_producto_delete
+    AFTER DELETE ON `rumbabar`.`compra_producto` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_compra_producto` (
+			`auditoria_compra_producto`.`audi_anterior_compraCantidad`,
+			`auditoria_compra_producto`.`audi_anterior_compraSubtotal`,
+			`auditoria_compra_producto`.`audi_anterior_fk_producto`,
+			`auditoria_compra_producto`.`audi_anterior_fk_compra`,
+			`auditoria_compra_producto`.`updated_at`
+		) VALUES (
+				OLD.compraCantidad,
+				OLD.compraSubtotal,
+				OLD.fk_producto,
+				OLD.fk_compra,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_mesas_create;$$
+
+CREATE TRIGGER auditoria_mesas_create
+    AFTER INSERT ON `rumbabar`.`mesas` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_mesas` (
+			`auditoria_mesas`.`audi_MesaId`,
+			`auditoria_mesas`.`audi_nuevo_MesaPuestos`,
+			`auditoria_mesas`.`created_at`
+		) VALUES (
+				NEW.MesaId,
+				NEW.MesaPuestos,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_mesas_update;$$
+
+CREATE TRIGGER auditoria_mesas_update
+    AFTER UPDATE ON `rumbabar`.`mesas` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_mesas` (
+			`auditoria_mesas`.`audi_MesaId`,
+			`auditoria_mesas`.`audi_nuevo_MesaPuestos`,
+			`auditoria_mesas`.`audi_anterior_MesaPuestos`,
+			`auditoria_mesas`.`updated_at`
+		) VALUES (
+				OLD.MesaId,
+				NEW.MesaPuestos,
+				OLD.MesaPuestos,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_mesas_delete;$$
+
+CREATE TRIGGER auditoria_mesas_delete
+    AFTER DELETE ON `rumbabar`.`mesas` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_mesas` (
+			`auditoria_mesas`.`audi_MesaId`,
+			`auditoria_mesas`.`audi_anterior_MesaPuestos`,
+			`auditoria_mesas`.`updated_at`
+		) VALUES (
+				OLD.MesaId,
+				OLD.MesaPuestos,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permisos_create;$$
+
+CREATE TRIGGER auditoria_permisos_create
+    AFTER INSERT ON `rumbabar`.`permisos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permisos` (
+			`auditoria_permisos`.`audi_PermisoId`,
+			`auditoria_permisos`.`audi_nuevo_PermisoNombre`,
+			`auditoria_permisos`.`created_at`
+		) VALUES (
+				NEW.PermisoId,
+				NEW.PermisoNombre,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permisos_update;$$
+
+CREATE TRIGGER auditoria_permisos_update
+    AFTER UPDATE ON `rumbabar`.`permisos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permisos` (
+			`auditoria_permisos`.`audi_PermisoId`,
+			`auditoria_permisos`.`audi_nuevo_PermisoNombre`,
+			`auditoria_permisos`.`audi_anterior_PermisoNombre`,
+			`auditoria_permisos`.`updated_at`
+		) VALUES (
+				OLD.PermisoId,
+				NEW.PermisoNombre,
+				OLD.PermisoNombre,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permisos_delete;$$
+
+CREATE TRIGGER auditoria_permisos_delete
+    AFTER DELETE ON `rumbabar`.`permisos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permisos` (
+			`auditoria_permisos`.`audi_PermisoId`,
+			`auditoria_permisos`.`audi_anterior_PermisoNombre`,
+			`auditoria_permisos`.`updated_at`
+		) VALUES (
+				OLD.PermisoId,
+				OLD.PermisoNombre,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permiso_rol_create;$$
+
+CREATE TRIGGER auditoria_permiso_rol_create
+    AFTER INSERT ON `rumbabar`.`permiso_rol` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permiso_rol` (
+			`auditoria_permiso_rol`.`audi_nuevo_fk_permiso`,
+			`auditoria_permiso_rol`.`audi_nuevo_fk_rol`,
+			`auditoria_permiso_rol`.`created_at`
+		) VALUES (
+				NEW.fk_permiso,
+				NEW.fk_rol,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permiso_rol_update;$$
+
+CREATE TRIGGER auditoria_permiso_rol_update
+    AFTER UPDATE ON `rumbabar`.`permiso_rol` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permiso_rol` (
+			`auditoria_permiso_rol`.`audi_nuevo_fk_permiso`,
+			`auditoria_permiso_rol`.`audi_nuevo_fk_rol`,
+			`auditoria_permiso_rol`.`audi_anterior_fk_permiso`,
+			`auditoria_permiso_rol`.`audi_anterior_fk_rol`,
+			`auditoria_permiso_rol`.`updated_at`
+		) VALUES (
+				NEW.fk_permiso,
+				NEW.fk_rol,
+				OLD.fk_permiso,
+				OLD.fk_rol,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_permiso_rol_delete;$$
+
+CREATE TRIGGER auditoria_permiso_rol_delete
+    AFTER DELETE ON `rumbabar`.`permiso_rol` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_permiso_rol` (
+			`auditoria_permiso_rol`.`audi_anterior_fk_permiso`,
+			`auditoria_permiso_rol`.`audi_anterior_fk_rol`,
+			`auditoria_permiso_rol`.`updated_at`
+		) VALUES (
+				OLD.fk_permiso,
+				OLD.fk_rol,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_productos_create;$$
+
+CREATE TRIGGER auditoria_productos_create
+    AFTER INSERT ON `rumbabar`.`productos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_productos` (
+			`auditoria_productos`.`audi_nuevo_ProductoNombre`,
+			`auditoria_productos`.`audi_nuevo_ProductoDescripcion`,
+			`auditoria_productos`.`audi_nuevo_ProductoPrecio`,
+			`auditoria_productos`.`audi_nuevo_ProductoCantidad`,
+			`auditoria_productos`.`audi_nuevo_fk_proveedor`,
+			`auditoria_productos`.`created_at`
+		) VALUES (
+				NEW.ProductoNombre,
+				NEW.ProductoDescripcion,
+				NEW.ProductoPrecio,
+				NEW.ProductoCantidad,
+				NEW.fk_proveedor,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_productos_update;$$
+
+CREATE TRIGGER auditoria_productos_update
+    AFTER UPDATE ON `rumbabar`.`productos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_productos` (
+			`auditoria_productos`.`audi_nuevo_ProductoNombre`,
+			`auditoria_productos`.`audi_nuevo_ProductoDescripcion`,
+			`auditoria_productos`.`audi_nuevo_ProductoPrecio`,
+			`auditoria_productos`.`audi_nuevo_ProductoCantidad`,
+			`auditoria_productos`.`audi_nuevo_fk_proveedor`,
+			`auditoria_productos`.`audi_anterior_ProductoNombre`,
+			`auditoria_productos`.`audi_anterior_ProductoDescripcion`,
+			`auditoria_productos`.`audi_anterior_ProductoPrecio`,
+			`auditoria_productos`.`audi_anterior_ProductoCantidad`,
+			`auditoria_productos`.`audi_anterior_fk_proveedor`,
+			`auditoria_productos`.`updated_at`
+		) VALUES (
+				NEW.ProductoNombre,
+				NEW.ProductoDescripcion,
+				NEW.ProductoPrecio,
+				NEW.ProductoCantidad,
+				NEW.fk_proveedor,
+				OLD.ProductoNombre,
+				OLD.ProductoDescripcion,
+				OLD.ProductoPrecio,
+				OLD.ProductoCantidad,
+				OLD.fk_proveedor,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_productos_delete;$$
+
+CREATE TRIGGER auditoria_productos_delete
+    AFTER DELETE ON `rumbabar`.`productos` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_productos` (
+			`auditoria_productos`.`audi_anterior_ProductoNombre`,
+			`auditoria_productos`.`audi_anterior_ProductoDescripcion`,
+			`auditoria_productos`.`audi_anterior_ProductoPrecio`,
+			`auditoria_productos`.`audi_anterior_ProductoCantidad`,
+			`auditoria_productos`.`audi_anterior_fk_proveedor`,
+			`auditoria_productos`.`updated_at`
+		) VALUES (
+				OLD.ProductoNombre,
+				OLD.ProductoDescripcion,
+				OLD.ProductoPrecio,
+				OLD.ProductoCantidad,
+				OLD.fk_proveedor,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_producto_venta_create;$$
+
+CREATE TRIGGER auditoria_producto_venta_create
+    AFTER INSERT ON `rumbabar`.`producto_venta` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_producto_venta` (
+			`auditoria_producto_venta`.`audi_nuevo_ventaCantidad`,
+			`auditoria_producto_venta`.`audi_nuevo_ventaSubtotal`,
+			`auditoria_producto_venta`.`audi_nuevo_fk_producto`,
+			`auditoria_producto_venta`.`audi_nuevo_fk_venta`,
+			`auditoria_producto_venta`.`created_at`
+		) VALUES (
+				NEW.ventaCantidad,
+				NEW.ventaSubtotal,
+				NEW.fk_producto,
+				NEW.fk_venta,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_producto_venta_update;$$
+
+CREATE TRIGGER auditoria_producto_venta_update
+    AFTER UPDATE ON `rumbabar`.`producto_venta` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_producto_venta` (
+			`auditoria_producto_venta`.`audi_nuevo_ventaCantidad`,
+			`auditoria_producto_venta`.`audi_nuevo_ventaSubtotal`,
+			`auditoria_producto_venta`.`audi_nuevo_fk_producto`,
+			`auditoria_producto_venta`.`audi_nuevo_fk_venta`,
+			`auditoria_producto_venta`.`audi_anterior_ventaCantidad`,
+			`auditoria_producto_venta`.`audi_anterior_ventaSubtotal`,
+			`auditoria_producto_venta`.`audi_anterior_fk_producto`,
+			`auditoria_producto_venta`.`audi_anterior_fk_venta`,
+			`auditoria_producto_venta`.`updated_at`
+		) VALUES (
+				NEW.ventaCantidad,
+				NEW.ventaSubtotal,
+				NEW.fk_producto,
+				NEW.fk_venta,
+				OLD.ventaCantidad,
+				OLD.ventaSubtotal,
+				OLD.fk_producto,
+				OLD.fk_venta,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_producto_venta_delete;$$
+
+CREATE TRIGGER auditoria_producto_venta_delete
+    AFTER DELETE ON `rumbabar`.`producto_venta` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_producto_venta` (
+			`auditoria_producto_venta`.`audi_anterior_ventaCantidad`,
+			`auditoria_producto_venta`.`audi_anterior_ventaSubtotal`,
+			`auditoria_producto_venta`.`audi_anterior_fk_producto`,
+			`auditoria_producto_venta`.`audi_anterior_fk_venta`,
+			`auditoria_producto_venta`.`updated_at`
+		) VALUES (
+				OLD.ventaCantidad,
+				OLD.ventaSubtotal,
+				OLD.fk_producto,
+				OLD.fk_venta,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_proveedores_create;$$
+
+CREATE TRIGGER auditoria_proveedores_create
+    AFTER INSERT ON `rumbabar`.`proveedores` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_proveedores` (
+			`auditoria_proveedores`.`audi_ProveedorID`,
+			`auditoria_proveedores`.`audi_nuevo_ProveedorNombre`,
+			`auditoria_proveedores`.`audi_nuevo_ProveedorNit`,
+			`auditoria_proveedores`.`created_at`
+		) VALUES (
+				NEW.ProveedorId,
+				NEW.ProveedorNombre,
+				NEW.ProveedorNit,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_proveedores_update;$$
+
+CREATE TRIGGER auditoria_proveedores_update
+    AFTER UPDATE ON `rumbabar`.`proveedores` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_proveedores` (
+			`auditoria_proveedores`.`audi_ProveedorID`,
+			`auditoria_proveedores`.`audi_nuevo_ProveedorNombre`,
+			`auditoria_proveedores`.`audi_nuevo_ProveedorNit`,
+			`auditoria_proveedores`.`audi_anterior_ProveedorNombre`,
+			`auditoria_proveedores`.`audi_anterior_ProveedorNit`,
+			`auditoria_proveedores`.`updated_at`
+		) VALUES (
+				OLD.ProveedorId,
+				NEW.ProveedorNombre,
+				NEW.ProveedorNit,
+				OLD.ProveedorNombre,
+				OLD.ProveedorNit,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_proveedores_delete;$$
+
+CREATE TRIGGER auditoria_proveedores_delete
+    AFTER DELETE ON `rumbabar`.`proveedores` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_proveedores` (
+			`auditoria_proveedores`.`audi_ProveedorID`,
+			`auditoria_proveedores`.`audi_anterior_ProveedorNombre`,
+			`auditoria_proveedores`.`audi_anterior_ProveedorNit`,
+			`auditoria_proveedores`.`updated_at`
+		) VALUES (
+				OLD.ProveedorId,
+				OLD.ProveedorNombre,
+				OLD.ProveedorNit,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_roles_create;$$
+
+CREATE TRIGGER auditoria_roles_create
+    AFTER INSERT ON `rumbabar`.`roles` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_roles` (
+			`auditoria_roles`.`audi_RolId`,
+			`auditoria_roles`.`audi_nuevo_RolNombre`,
+			`auditoria_roles`.`created_at`
+		) VALUES (
+				NEW.RolId,
+				NEW.RolNombre,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_roles_update;$$
+
+CREATE TRIGGER auditoria_roles_update
+    AFTER UPDATE ON `rumbabar`.`roles` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_roles` (
+			`auditoria_roles`.`audi_RolId`,
+			`auditoria_roles`.`audi_nuevo_RolNombre`,
+			`auditoria_roles`.`audi_anterior_RolNombre`,
+			`auditoria_roles`.`updated_at`
+		) VALUES (
+				OLD.RolId,
+				NEW.RolNombre,
+				OLD.RolNombre,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_roles_delete;$$
+
+CREATE TRIGGER auditoria_roles_delete
+    AFTER DELETE ON `rumbabar`.`roles` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_roles` (
+			`auditoria_roles`.`audi_RolId`,
+			`auditoria_roles`.`audi_anterior_RolNombre`,
+			`auditoria_roles`.`updated_at`
+		) VALUES (
+				OLD.RolId,
+				OLD.RolNombre,
+				OLD.deleted_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_usuarios_create;$$
+
+CREATE TRIGGER auditoria_usuarios_create
+    AFTER INSERT ON `rumbabar`.`usuarios` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_usuarios` (
+			`auditoria_usuarios`.`audi_UsuarioId`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioName`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioEmail`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioPassword`,
+			`auditoria_usuarios`.`audi_nuevo_fk_rol`,
+			`auditoria_usuarios`.`created_at`
+		) VALUES (
+				NEW.UsuarioId,
+				NEW.UsuarioName,
+				NEW.UsuarioEmail,
+				NEW.UsuarioPassword,
+				NEW.fk_rol,
+				NEW.created_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_usuarios_update;$$
+
+CREATE TRIGGER auditoria_usuarios_update
+    AFTER UPDATE ON `rumbabar`.`usuarios` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_usuarios` (
+			`auditoria_usuarios`.`audi_UsuarioId`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioName`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioEmail`,
+			`auditoria_usuarios`.`audi_nuevo_UsuarioPassword`,
+			`auditoria_usuarios`.`audi_nuevo_fk_rol`,
+			`auditoria_usuarios`.`audi_anterior_UsuarioName`,
+			`auditoria_usuarios`.`audi_anterior_UsuarioEmail`,
+			`auditoria_usuarios`.`audi_anterior_UsuarioPassword`,
+			`auditoria_usuarios`.`audi_anterior_fk_rol`,
+			`auditoria_usuarios`.`updated_at`
+		) VALUES (
+				OLD.UsuarioId,
+				NEW.UsuarioName,
+				NEW.UsuarioEmail,
+				NEW.UsuarioPassword,
+				NEW.fk_rol,
+				OLD.UsuarioName,
+				OLD.UsuarioEmail,
+				OLD.UsuarioPassword,
+				OLD.fk_rol,
+				NEW.updated_at
+			);
+    END;$$
+
+DROP TRIGGER IF EXISTS auditoria_usuarios_delete;$$
+
+CREATE TRIGGER auditoria_usuarios_delete
+    AFTER DELETE ON `rumbabar`.`usuarios` FOR EACH ROW
+    BEGIN
+		INSERT INTO `rumbabar`.`auditoria_usuarios` (
+			`auditoria_usuarios`.`audi_UsuarioId`,
+			`auditoria_usuarios`.`audi_anterior_RolNombre`,
+			`auditoria_usuarios`.`updated_at`
+		) VALUES (
+				OLD.UsuarioId,
+				OLD.UsuarioName,
+				OLD.UsuarioEmail,
+				OLD.UsuarioPassword,
+				OLD.fk_rol,
+				OLD.deleted_at
+			);
+    END;$$
+
+
+DELIMITER ;
+
+INSERT INTO `rumbabar`.`clientes` (`ClienteNombre`, `ClienteDocumento`,`created_at`) VALUES ('Luis De la hoz',	'1127607127', NOW());
