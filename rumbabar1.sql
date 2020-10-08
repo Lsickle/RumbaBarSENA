@@ -10,7 +10,7 @@
 
 DROP DATABASE IF EXISTS `rumbabar`;
 
-CREATE DATABASE IF NOT EXISTS `rumbabar` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE IF NOT EXISTS `rumbabar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `rumbabar`;
 
 --  estructura para tabla rumbabar.auditoria_clientes
