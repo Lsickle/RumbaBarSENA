@@ -73,3 +73,6 @@ SELECT * FROM `rumbabar`.`ventas` WHERE `ventas`.`updated_at` BETWEEN '2020-10-0
 
 --ventas segun fecha
 SELECT * FROM `rumbabar`.`ventas` WHERE `ventas`.`updated_at` = '2020-10-02';
+
+--productos de una venta
+SELECT * FROM ((`rumbabar`.`ventas` INNER JOIN `rumbabar`.`producto_venta` ON `ventas`.`VentaId`=`producto_venta`.`fk_venta`) INNER JOIN `rumbabar`.`productos` ON `productos`.`ProductoId`=`producto_venta`.`fk_producto`) WHERE `ventas`.`VentaId` = 1;
