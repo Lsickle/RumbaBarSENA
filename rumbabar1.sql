@@ -2320,6 +2320,22 @@ DROP PROCEDURE IF EXISTS SelectVentaConProductos;
 CREATE PROCEDURE SelectVentaConProductos(venta INT)
 SELECT `ventas`.`VentaId`, `ventas`.`VentaSaldo`, `ventas`.`VentaTotal`, `ventas`.`fk_user`, `ventas`.`fk_mesa`, `ventas`.`fk_cliente`, `productos`.`ProductoId`, `productos`.`ProductoNombre`, `productos`.`ProductoPrecio`, `productos`.`ProductoCantidad` FROM ((`rumbabar`.`ventas` INNER JOIN `rumbabar`.`producto_venta` ON `ventas`.`VentaId`=`producto_venta`.`fk_venta`) INNER JOIN `rumbabar`.`productos` ON `productos`.`ProductoId`=`producto_venta`.`fk_producto`) WHERE `ventas`.`VentaId` = venta;
 
+DROP PROCEDURE IF EXISTS FiltrarVentaPorMesa;
+CREATE PROCEDURE FiltrarVentaPorMesa(venta INT)
+SELECT `MesaId`,`VentaTotal` FROM `mesas`,`ventas` WHERE `MesaId`=`VentaId`
+
+DROP PROCEDURE IF EXISTS BuscarUsuarioPorId;
+CREATE PROCEDURE BuscarUsuarioPorId(Id INT);
+SELECT `UsuarioName` FROM `usuarios` WHERE `UsuarioId`=1;
+
+DROP PROCEDURE IF EXISTS BuscarVentasTotalesPorProductos;
+CREATE PROCEDURE BuscarVentasTotalesPorProductos(venta INT);
+SELECT `ProductoId`,`ProductoNombre`,`VentaTotal` FROM `productos`,`ventas` WHERE `ProductoId`=`VentaId`
+
+DROP PROCEDURE IF EXISTS FiltrarProductosPorAscencencia;
+CREATE PROCEDURE FiltrarProductosPorAscencencia (productos VARCHAR(100));
+SELECT `ProductoId`,`ProductoNombre`,`ProductoPrecio` FROM `productos` ORDER BY `ProductoNombre` ASC
+
 DELIMITER $$
 
 DROP TRIGGER IF EXISTS auditoria_clientes_create;$$
